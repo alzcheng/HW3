@@ -41,11 +41,14 @@ function generatePassword() {
     //assume that user has selected at least one characteristic
   }
 
-  for (let i = 0; i < psLength; i++) {
-    let randomNum = Math.round(Math.random() * psCharString.length);
-    passwordResult = passwordResult.concat(psCharString[randomNum]);
+  if (psCharString === "") {
+    passwordResult = "Error:  Password generation failed. Please generate password again and select at least one criteria:  lowercase, uppercase, numeric, and/or special characters.";
+  } else {
+    for (let i = 0; i < psLength; i++) {
+      let randomNum = Math.round(Math.random() * psCharString.length);
+      passwordResult = passwordResult.concat(psCharString[randomNum]);
+    }
   }
-
   return passwordResult;
 }
 

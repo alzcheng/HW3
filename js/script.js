@@ -6,17 +6,14 @@ function generatePassword() {
   var psCharString = "";
   var passwordResult = "";
   var psCharStringArr = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMOPQRSTUVWXYZ", "1234567890", " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"];
-  var psLength = prompt("For length of password, please enter a number between 8 and 128");
+
+  //Handles the case if the user enters in a floating number, automatically forces it to be an integer
+  var psLength = parseInt(prompt("For length of password, please enter a number between 8 and 128"));
 
   if (isNaN(psLength)) {
 
     //Handles the case if user does not enter a number for password length
     passwordResult = "ERROR:  Password generation failed. \n Please generate password again and enter a NUMBER for password length.";
-
-  } else if (!Number.isInteger(psLength)) {
-
-    //Handles the case if the user does not enter a whole number for password length 
-    passwordResult = "ERROR:  Password generation failed. \n Please generate password again and enter a number that is a WHOLE NUMBER for password length.";
 
   } else if (psLength < 8 || psLength > 128) {
 

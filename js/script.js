@@ -20,22 +20,33 @@ var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
   var psLength = prompt("For length of password, please enter a number between 8 and 128");
+  //assumed that user has done the selection per ask
   var psCriteria = [];
+  //Stores user answer for including lowercase in password criteria
   psCriteria[0] = confirm("Do you want password character type to include lowercase?");
+  //Stores user answer for including uppercase in password criteria
   psCriteria[1] = confirm("Do you want password character type to include uppercase?");
+  //Stores user answer for including numeric in password criteria
   psCriteria[2] = confirm("Do you want password character type to include numeric?");
+  //Stores user answer for including special characters in password criteria
   psCriteria[3] = confirm("Do you want password character type to include special characters?");
   var psCharStringArr = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMOPQRSTUVWXYZ", "1234567890", " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"];
   var psCharString = "";
+  var passwordResult = "";
 
   for (let i = 0; i < psCharStringArr.length; i++) {
     if (psCriteria[i]) {
       psCharString = psCharString.concat(psCharStringArr[i]);
     }
+    //assume that user has selected at least one characteristic
   }
 
-  return psCharString;
+  for (let i = 0; i < psLength; i++) {
+    let randomNum = Math.round(Math.random() * psCharString.length);
+    passwordResult = passwordResult.concat(psCharString[randomNum]);
+  }
 
+  return passwordResult;
 }
 
 function writePassword() {

@@ -19,6 +19,7 @@ function generatePassword() {
 
   //Handles the case if the user enters in a floating number, automatically forces it to be an integer
   var psLength = parseInt(prompt("For length of password, please enter a number between 8 and 128"));
+  alert("You want to generate a password that is " + psLength + " characters long.");
 
   if (isNaN(psLength)) {
 
@@ -32,14 +33,34 @@ function generatePassword() {
 
   } else {
 
-    //Stores user answer for including lowercase in password criteria
+    //Stores user answer for including lowercase in password criteria and alert user of their choice
     psCriteria[0] = confirm("Do you want password character type to include lowercase?");
-    //Stores user answer for including uppercase in password criteria
+    if (psCriteria[0]) {
+      alert("You have chosen to include lowercase in your password");
+    } else {
+      alert("You DID NOT want to include lowercase in your password");
+    }
+    //Stores user answer for including uppercase in password criteria and alert user of their choice
     psCriteria[1] = confirm("Do you want password character type to include uppercase?");
-    //Stores user answer for including numeric in password criteria
+    if (psCriteria[1]) {
+      alert("You have chosen to include uppercase in your password");
+    } else {
+      alert("You DID NOT want to include uppercase in your password");
+    }
+    //Stores user answer for including numeric in password criteria and alert user of their choice
     psCriteria[2] = confirm("Do you want password character type to include numeric?");
-    //Stores user answer for including special characters in password criteria
+    if (psCriteria[2]) {
+      alert("You have chosen to include numeric in your password");
+    } else {
+      alert("You DID NOT want to include numeric in your password");
+    }
+    //Stores user answer for including special characters in password criteria and alert user of their choice
     psCriteria[3] = confirm("Do you want password character type to include special characters?");
+    if (psCriteria[3]) {
+      alert("You have chosen to include special characters in your password");
+    } else {
+      alert("You DID NOT want to include special characters in your password");
+    }
 
     //Create the string that we will randomly select characters from for generating the password
     for (let i = 0; i < psCharStringArr.length; i++) {
@@ -65,7 +86,6 @@ function generatePassword() {
       }
     }
 
-
     //Filter psUniqueIndex to make it a unique array
     psUniqueIndex = psUniqueIndex.filter(unique);
 
@@ -74,20 +94,16 @@ function generatePassword() {
       for (let i = psUniqueIndex.length; i < psCharStringArr.length; i++) {
         psUniqueIndex[i] = Math.floor(Math.random() * psLength);
         psUniqueIndex = psUniqueIndex.filter(unique);
-        //To verify that this code makes an array of unique values, uncomment console.log below
-        //console.log(psUniqueIndex);
       }
     }
 
     psStringSplit = passwordResult.split('');
-    //To make sure that there is at least 1 character satisfying the criteria 
+    //Making sure that there is at least 1 character satisfying the criteria 
     for (let i = 0; i < psCriteria.length; i++) {
       //Generate a random index within the lengh of the possible characters for the criteria to be placed in password
       let psCharStringIndex = Math.floor(Math.random() * psCharStringArr[i].length);
       if (psCriteria[i]) {
         psStringSplit[psUniqueIndex[i]] = psCharStringArr[i][psCharStringIndex];
-        //To verify that this code builds the password back up ensuring criteria is met, uncomment console.log below
-        //console.log(psStringSplit);
       }
     }
     passwordResult = psStringSplit.join("");

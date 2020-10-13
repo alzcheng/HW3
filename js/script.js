@@ -1,11 +1,13 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+
 function generatePassword() {
   var psCriteria = [];
   var psCharString = "";
   var passwordResult = "";
-  var psCharStringArr = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMOPQRSTUVWXYZ", "1234567890", " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"];
+  var psStringSplit = [];
+  var psCharStringArr = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "1234567890", " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"];
 
   //Handles the case if the user enters in a floating number, automatically forces it to be an integer
   var psLength = parseInt(prompt("For length of password, please enter a number between 8 and 128"));
@@ -36,6 +38,7 @@ function generatePassword() {
       if (psCriteria[i]) {
         psCharString = psCharString.concat(psCharStringArr[i]);
       }
+
     }
 
     if (psCharString === "") {
@@ -46,12 +49,27 @@ function generatePassword() {
     } else {
 
       for (let i = 0; i < psLength; i++) {
-        let randomNum = Math.round(Math.random() * psCharString.length);
+        let randomNum = Math.floor(Math.random() * psCharString.length);
         //Generates the password
         passwordResult = passwordResult.concat(psCharString[randomNum]);
-
       }
     }
+    console.log(passwordResult);
+    psStringSplit = passwordResult.split('');
+    //To make sure that there is at least 1 character satisfying the criteria 
+    for (let i = 0; i < psCriteria.length; i++) {
+      //Generate a random index within the length of the password to ensure criteria
+      let psIndex = Math.floor(Math.random() * psLength);
+      //Generate a random index within the lengh of the possible characters for the criteria to be placed in password
+      let psCharStringIndex = Math.floor(Math.random() * psCharStringArr[i].length);
+      console.log(psStringSplit)
+      if (psCriteria[i]) {
+        psStringSplit[psIndex] = psCharStringArr[i][psCharStringIndex];
+        console.log(psStringSplit);
+      }
+    }
+    passwordResult = psStringSplit.join("");
+    console.log(passwordResult);
   }
   return passwordResult;
 }

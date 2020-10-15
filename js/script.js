@@ -10,18 +10,17 @@ function unique(value, index, self) {
 function generatePassword() {
 
     //Initialize variables
-    var psCriteria = [];
-    var numberOfCriteria = 4;
-    var psCharString = "";
-    var passwordResult = "";
-    var psStringSplit = [];
-    var psUniqueIndex = [];
-    var psLength;
-    var criteriaArr = ["lowercase", "uppercase", "numeric", "special characters"];
-    var psCharStringArr = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "1234567890", " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"];
+    let psCriteria = [];
+    let numberOfCriteria = 4;
+    let psCharString = "";
+    let passwordResult = "";
+    let psStringSplit = [];
+    let psUniqueIndex = [];
+    let psLength;
+    let criteriaArr = ["lowercase", "uppercase", "numeric", "special characters"];
+    let psCharStringArr = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "1234567890", " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"];
 
     //Stores user answer for including lowercase in password criteria and alert user of their choice
-
     for (i = 0; i < numberOfCriteria; i++) {
         psCriteria[i] = confirm("Do you want password character type to include " + criteriaArr[i] + "?");
         if (psCriteria[i]) {
@@ -31,6 +30,7 @@ function generatePassword() {
         }
     }
 
+    //Check to see if user has selected at least 1 criteria
     if (psCriteria[0] || psCriteria[1] || psCriteria[2] || psCriteria[3]) {
 
         //Handles the case if the user enters in a floating number, automatically forces it to be an integer
@@ -89,6 +89,8 @@ function generatePassword() {
         }
 
     } else {
+
+        //User did not select any criteria
         passwordResult = "ERROR:  Password generation failed. \n Please generate password again and select at least one criteria:  lowercase, uppercase, numeric, and/or special characters.";
     }
     return passwordResult;

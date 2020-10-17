@@ -34,7 +34,7 @@ function generatePassword() {
     if (psCriteria[0] || psCriteria[1] || psCriteria[2] || psCriteria[3]) {
 
         //Handles the case if the user enters in a floating number, automatically forces it to be an integer
-        psLength = parseInt(prompt("For length of password, please enter a number between 8 and 128"));
+        psLength = Math.floor(prompt("For length of password, please enter a number between 8 and 128"));
         alert("You want to generate a password that is " + psLength + " characters long.");
 
         if (isNaN(psLength)) {

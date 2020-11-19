@@ -32,4 +32,4 @@ Note: For any floating numbers enterd into the prompt, the application will floo
 2. Create a unique random string of 4 integers
 
 ## Link to finished product website
-[Link to finished product](https://alzcheng.github.io/HW3/)
+[Link to finished product](https://alzcheng.github.io/passwordGenerator/)

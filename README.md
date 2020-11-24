@@ -1,4 +1,4 @@
-# HW3 JavaScript: Password Generator
+# Password Generator
 
 ## The Application
 
